@@ -1,5 +1,5 @@
 {
-  "name": "marketing-ai-system",
+  "name": "agentic-operations-platform",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -29,5 +29,6 @@
     "eslint-config-next": "16.2.6",
     "tailwindcss": "^4",
     "typescript": "^5"
-  }
+  },
+  "description": "Portfolio-safe multi-agent operations platform with structured outputs and human approval"
 }

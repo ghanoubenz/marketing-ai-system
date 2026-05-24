@@ -1,65 +1,104 @@
-# Marketing AI / CRM System
+# Agentic Operations Platform
 
-AI-powered marketing and CRM workspace for organizing leads, projects, content, proposals, reports, and agent-assisted workflows.
+A multi-agent workflow platform for turning business inputs into strategy, content, outreach, proposal, and reporting outputs through structured AI agents and human approval.
 
-## Problem
+## Why I Built This
 
-Marketing and sales teams often work across disconnected CRM records, campaign notes, proposal drafts, and reporting spreadsheets. Without automation, managers spend too much time assembling status updates and next actions manually. Any public portfolio version must remove real pipeline, client, calendar, and proposal results.
+I built this to explore how business operations can be organized around AI agents without giving those agents unchecked control. The useful part is not just generating text; it is capturing context, routing structured outputs, reviewing them, and tracking the state of work across a dashboard.
 
-## Solution
+## The Problem
 
-This repository presents a portfolio-safe Next.js system that demonstrates AI-assisted CRM and marketing operations. The app structure includes dashboards, agents, workflows, content, proposals, and reporting while replacing real mock outputs with empty dummy-safe placeholders.
+Business workflows often spread context across notes, CRM records, proposal drafts, content plans, and reporting tasks. AI can help draft and summarize, but the output becomes hard to trust if there is no state model, approval inbox, or audit trail. A practical agent platform needs structured outputs and human review before business actions happen.
 
-## Workflow Infographic
+## Workflow
 
-![Marketing AI workflow](docs/infographic.svg)
+1. Create project.
+2. Add business context.
+3. Run strategy agent.
+4. Review structured output.
+5. Approve or reject.
+6. Generate content, outreach, proposal, or reporting assets.
+7. Track status in dashboard.
 
-## System Architecture
+## Workflow Infographics
 
-- Next.js application with dashboard pages and API routes.
-- Supabase-ready database schema and migrations.
-- AI provider adapters for OpenAI, Anthropic, Gemini, and GPT image generation.
-- Agent workflow modules for lead research, outreach, content, proposals, weekly operations, and reporting.
-- Human review screens for approving or editing AI outputs.
+- [Platform overview](docs/infographics/agentic-platform-overview.svg)
+- [Agent workflow](docs/infographics/agent-workflow.svg)
+- [Architecture](docs/infographics/agent-architecture.svg)
 
-## Tools Used
+## Architecture
 
-Salesforce-style CRM concepts, dashboards, AI reporting, automation workflows, Supabase, Next.js, OpenAI, Anthropic, Gemini, and image generation providers.
+- Next.js / React / TypeScript frontend.
+- Next.js API routes for agent execution and workflow actions.
+- Supabase / PostgreSQL schema for projects, leads, messages, assets, proposals, reports, workflows, and activity logs.
+- AI provider layer with Anthropic, OpenAI, Gemini, and GPT image provider adapters represented in code.
+- Human approval inbox for reviewing agent messages before downstream use.
+- Project context and knowledge modules for keeping agent outputs tied to workflow state.
 
-## Key Features
+## What I Built
 
-- CRM-style lead and project organization.
-- Agent-assisted campaign and pipeline summaries.
-- Dashboard/reporting structure.
-- Proposal, outreach, and content workflow modules.
-- Provider routing for multiple AI APIs.
-- Portfolio-safe mock data with real results removed.
+I designed the agent workflow model, mapped the business operations process, structured the project state, and built the portfolio-safe implementation to demonstrate how the platform works.
 
-## Example Workflow
+My focus was:
+- converting business operations into agent-assisted workflows
+- defining approval gates between agents
+- connecting AI output to dashboard state
+- separating strategy, content, outreach, proposal, and reporting agents
+- keeping private operational data out of the public repository
 
-1. Organize dummy client and project data.
-2. Review CRM activity and pipeline status.
-3. Run an AI agent to summarize progress.
-4. Review dashboard or reporting output.
-5. Approve recommendations before action.
+## Agent Design
 
-## Business Impact
+Agents are organized around workflow roles rather than generic chat. The platform includes strategy, research, content, outreach, proposal, image prompt, carousel, CMO review, and weekly operations flows. Outputs are stored as structured messages so they can be approved, edited, rejected, or used by downstream steps.
 
-The system demonstrates how AI agents can support marketing operations by reducing manual reporting, improving follow-up visibility, and creating a shared workspace for campaign decisions. It is structured to show practical engineering and business process thinking while keeping all sensitive results out of the public repository.
+## Data Model
+
+The Supabase schema models projects, leads, content assets, outreach messages, proposals, reports, activity logs, agent messages, and workflow runs. This lets the UI show state instead of treating AI output as a disposable chat transcript.
+
+## Human Approval Flow
+
+AI output is routed through an inbox-style review layer. A user can approve, reject, edit, or mark output as done. Downstream generation should depend on approved context rather than raw unreviewed output.
+
+## Architecture Decision Notes
+
+- I used Supabase/Postgres because agent workflows need persisted state, not only prompt responses.
+- I separated provider adapters from agent routes so different tasks can use different model providers.
+- I kept approval state in the workflow because business outputs should not become external actions automatically.
+- I removed mock business results from the public repo and replaced them with empty demo-safe placeholders.
 
 ## Security & Data Privacy
 
-This repository is a portfolio-safe version of the system. All real client data, API keys, tender documents, CRM exports, generated proposals, calendar outputs, and operational results have been removed. Any files shown are empty placeholders or dummy samples created only to demonstrate the workflow structure.
+This repository is a portfolio-safe version of the system. All real client data, API keys, tender documents, CRM exports, generated proposals, calendar outputs, outreach lists, logs, and operational results have been removed.
+
+Any files shown in `/examples`, `/test-fixtures`, or `/schemas` are dummy samples created only to demonstrate workflow structure.
+
+The system is designed around:
+- environment variables for secrets
+- human approval gates before external actions
+- empty placeholder folders for generated outputs
+- no real production data in the public repository
+- separation between demo data and private operational data
+
+## Current Status
+
+This is a portfolio-safe version of the system. The public repository demonstrates the app structure, provider layer, Supabase schema, API routes, agent workflow model, and approval approach. Private business data, production outputs, calendar results, and credentials have been removed.
+
+Status:
+- Workflow architecture: documented
+- Demo schemas: included
+- Sensitive outputs: removed
+- Real credentials: not included
+- Production data: not included
 
 ## How to Run Locally
 
-1. Copy `.env.example` to `.env.local` and add your own local credentials.
-2. Run `npm install`.
-3. Run `npm run dev`.
-4. Open the local Next.js URL and use only dummy data.
+1. Copy `.env.example` to `.env.local`.
+2. Add your own Supabase and AI provider credentials.
+3. Run `npm install`.
+4. Run `npm run dev`.
+5. Use dummy data only in the public version.
 
 ## Future Improvements
 
+- Add role-based permissions for approval queues.
 - Add demo seed data that is clearly fake.
-- Add role-based permissions.
-- Add exportable portfolio demo reports with dummy metrics only.
+- Add workflow run visualization and stricter schema validation.
