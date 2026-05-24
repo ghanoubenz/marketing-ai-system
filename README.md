@@ -1,110 +1,65 @@
-# Marketing AI System
+# Marketing AI / CRM System
 
-Multi-agent marketing operations desk for founders and small teams: strategy, research, content, outreach, proposals, and weekly reporting in one approval-driven workspace.
+AI-powered marketing and CRM workspace for organizing leads, projects, content, proposals, reports, and agent-assisted workflows.
 
 ## Problem
 
-Small teams often run marketing from disconnected notes, spreadsheets, chat prompts, and CRM tabs. The work is repetitive, but still risky because outbound messages, proposals, and public content need human judgment before they go live. This creates a slow loop between product positioning, lead research, content creation, outreach, and reporting.
+Marketing and sales teams often work across disconnected CRM records, campaign notes, proposal drafts, and reporting spreadsheets. Without automation, managers spend too much time assembling status updates and next actions manually. Any public portfolio version must remove real pipeline, client, calendar, and proposal results.
 
 ## Solution
 
-Marketing AI System centralizes the marketing workflow into a dashboard powered by specialized AI agents. Each agent handles a focused job, writes structured output, and sends the result to a shared inbox where the operator can approve, edit, reject, or turn it into the next action.
+This repository presents a portfolio-safe Next.js system that demonstrates AI-assisted CRM and marketing operations. The app structure includes dashboards, agents, workflows, content, proposals, and reporting while replacing real mock outputs with empty dummy-safe placeholders.
 
-The product is designed around a simple rule: AI can prepare the work, but a human approves anything customer-facing.
+## Workflow Infographic
 
-## What It Includes
+![Marketing AI workflow](docs/infographic.svg)
 
-- Product and offer workspace for positioning, pricing, objections, buyer pains, and landing page copy
-- Lead CRM with prioritization, research notes, follow-up dates, and pipeline status
-- Agent inbox for reviewing AI recommendations before anything is sent or published
-- Content system for LinkedIn posts, carousel outlines, one-pagers, and campaign assets
-- Outreach system for email sequences, LinkedIn messages, follow-ups, and reply handling
-- Proposal builder with executive summaries, scope, pricing, next steps, and cover emails
-- Weekly marketing report with activity metrics, blockers, best-performing messages, and next actions
+## System Architecture
 
-## Agent System
+- Next.js application with dashboard pages and API routes.
+- Supabase-ready database schema and migrations.
+- AI provider adapters for OpenAI, Anthropic, Gemini, and GPT image generation.
+- Agent workflow modules for lead research, outreach, content, proposals, weekly operations, and reporting.
+- Human review screens for approving or editing AI outputs.
 
-The app models a marketing department as a set of focused agents:
+## Tools Used
 
-- Product Strategy Agent
-- ICP and Market Research Agent
-- Landing Page Agent
-- Content Agent
-- Carousel / One-Pager Agent
-- Lead Research Agent
-- Outreach Agent
-- Reply Handler Agent
-- Follow-Up Agent
-- Proposal Agent
-- Meeting Prep Agent
-- Weekly CEO Report Agent
+Salesforce-style CRM concepts, dashboards, AI reporting, automation workflows, Supabase, Next.js, OpenAI, Anthropic, Gemini, and image generation providers.
 
-Each agent has a narrow responsibility, a typed output target, and a review path through the agent inbox.
+## Key Features
 
-## Architecture
+- CRM-style lead and project organization.
+- Agent-assisted campaign and pipeline summaries.
+- Dashboard/reporting structure.
+- Proposal, outreach, and content workflow modules.
+- Provider routing for multiple AI APIs.
+- Portfolio-safe mock data with real results removed.
 
-```mermaid
-flowchart LR
-  User["Operator"] --> Dashboard["Next.js Dashboard"]
-  Dashboard --> Agents["AI Agent API Routes"]
-  Agents --> Providers["Claude / OpenAI Provider Layer"]
-  Agents --> Database["Supabase Postgres"]
-  Database --> Inbox["Agent Inbox"]
-  Inbox --> Approval["Human Approval"]
-  Approval --> Assets["Content, Outreach, Proposals, Reports"]
-```
+## Example Workflow
 
-## Key Design Decisions
+1. Organize dummy client and project data.
+2. Review CRM activity and pipeline status.
+3. Run an AI agent to summarize progress.
+4. Review dashboard or reporting output.
+5. Approve recommendations before action.
 
-- **Human-in-the-loop by default:** the system drafts and recommends, but customer-facing actions stay in a review queue.
-- **Specialized agents instead of one generic chatbot:** each workflow has its own prompt, data shape, and business context.
-- **Structured JSON outputs:** agent results are easier to validate, store, display, and turn into follow-up actions.
-- **Central approval inbox:** the operator does not need to check every tool or page to know what needs attention.
-- **Supabase-backed workflow state:** leads, products, proposals, content, tasks, agent messages, and reports share one data model.
-- **Provider abstraction:** Claude is the primary provider, with room for OpenAI or other models as fallback.
-- **Portfolio-safe demo data:** included sample records are synthetic and designed to show product behavior without exposing client data.
+## Business Impact
 
-## Tech Stack
+The system demonstrates how AI agents can support marketing operations by reducing manual reporting, improving follow-up visibility, and creating a shared workspace for campaign decisions. It is structured to show practical engineering and business process thinking while keeping all sensitive results out of the public repository.
 
-- **Frontend:** Next.js App Router, React, TypeScript
-- **Styling:** Tailwind CSS, lucide-react icons
-- **Backend:** Next.js API routes
-- **Database:** Supabase Postgres
-- **AI:** Anthropic Claude SDK, optional OpenAI-compatible provider path
-- **Exports:** jsPDF and JSZip for document/content packaging
-- **Deployment target:** Vercel
+## Security & Data Privacy
 
-## Repository Safety
+This repository is a portfolio-safe version of the system. All real client data, API keys, tender documents, CRM exports, generated proposals, calendar outputs, and operational results have been removed. Any files shown are empty placeholders or dummy samples created only to demonstrate the workflow structure.
 
-This public version excludes local environments, build output, dependency folders, Supabase temp files, and private data. Environment variables are documented in `.env.local.example` with placeholder values only.
+## How to Run Locally
 
-## Run Locally
+1. Copy `.env.example` to `.env.local` and add your own local credentials.
+2. Run `npm install`.
+3. Run `npm run dev`.
+4. Open the local Next.js URL and use only dummy data.
 
-```bash
-npm install
-cp .env.local.example .env.local
-npm run dev
-```
+## Future Improvements
 
-Then open `http://localhost:3000`.
-
-For a full Supabase-backed setup, create a Supabase project, add the environment variables from `.env.local.example`, and apply the SQL migrations in `supabase/migrations`.
-
-## Environment Variables
-
-```bash
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-SUPABASE_SERVICE_ROLE_KEY=
-ANTHROPIC_API_KEY=
-OPENAI_API_KEY=
-GEMINI_API_KEY=
-NEXT_PUBLIC_APP_URL=
-GOOGLE_API_KEY=
-GOOGLE_SEARCH_CX=
-GOOGLE_SERVICE_ACCOUNT_JSON=
-```
-
-## Portfolio Notes
-
-This project demonstrates how I think about AI product systems beyond a simple chat interface: workflow design, approval states, structured agent outputs, CRM-style data modeling, and operator control. The focus is not just generating text, but making AI useful inside a real marketing operating system.
+- Add demo seed data that is clearly fake.
+- Add role-based permissions.
+- Add exportable portfolio demo reports with dummy metrics only.
