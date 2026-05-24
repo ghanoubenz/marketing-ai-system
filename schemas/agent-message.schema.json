@@ -1,0 +1,18 @@
+{
+  "note": "Dummy schema for portfolio demonstration only.",
+  "type": "object",
+  "properties": {
+    "agent": {
+      "type": "string"
+    },
+    "message_type": {
+      "type": "string"
+    },
+    "output": {
+      "type": "object"
+    },
+    "approval_status": {
+      "type": "string"
+    }
+  }
+}
